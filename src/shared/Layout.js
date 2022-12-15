@@ -3,28 +3,29 @@
 import React from "react";
 
 const HeaderStyles = {
-  width: "100%",
-  background: "black",
-  height: "50px",
+  background: "#a1c5ff",
+  height: "30px",
   display: "flex",
   alignItems: "center",
-  paddingLeft: "20px",
+  padding: "20px",
   color: "white",
   fontWeight: "600",
+  justifyContent: "space-between",
 };
 
 const layoutStyles = {
+  maxWidth: "1200px",
+  minWidth: "800px",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  minHeight: "90vh",
+  margin: "30px auto",
 };
 
 function Header() {
   return (
     <div style={{ ...HeaderStyles }}>
       <h1>To-do-List</h1>
+      <h3>by React</h3>
     </div>
   );
 }

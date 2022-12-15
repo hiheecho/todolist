@@ -1,9 +1,9 @@
 import React from "react";
 
-function TodoList({ isActive }) {
+function TodoList() {
   return (
     <div>
-      <h3>{isActive ? "Working" : "Done"}</h3>
+      <p>TodoList</p>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Layout from "./Layout";
-import TodoList from "../pages/TodoList";
+import DetailTodo from "../pages/DetailTodo";
 
 const Router = () => {
   return (
@@ -10,8 +10,7 @@ const Router = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/TodoList" element={<TodoList />} />
-          <Route path="TodoList/:id" element={<TodoList />} />
+          <Route path="/:id" element={<DetailTodo />} />
         </Routes>
       </Layout>
     </BrowserRouter>

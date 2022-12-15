@@ -1,19 +1,12 @@
 // src/pages/home.js
-import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
+import TodoList from "../components/TodoList";
 const Home = () => {
-  const navigate = useNavigate();
-
   return (
     <div>
       <Input />
-      <button
-        onClick={() => {
-          navigate("/TodoList");
-        }}
-      >
-        TodoList 이동
-      </button>
+      <TodoList isActive={true} />
+      <TodoList isActive={false} />
     </div>
   );
 };

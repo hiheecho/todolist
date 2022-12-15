@@ -1,14 +1,67 @@
-import React from "react";
-import addTodos from "../redux/modules/todos";
+import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
+import { addTodo } from "../redux/modules/todos";
 
-function Input() {
+const Input = () => {
+  const id = uuidv4();
+  const dispatch = useDispatch();
+  const [todo, setTodo] = useState([
+    {
+      id: uuidv4(),
+      title: "",
+      content: "",
+      isDone: false,
+    },
+  ]);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const titleInput = useRef();
+  const contentInput = useRef();
+  const titleChange = (event) => {
+    setTitle(event.target.value);
+  };
+  const contentChange = (event) => {
+    setContent(event.target.value);
+  };
+  const submitTodo = (event) => {
+    event.preventDefault();
+    dispatch(addTodo({ ...todo, id }));
+    if (!title) {
+      alert("제목을 입력하세요");
+      titleInput.current.focus();
+
+      return;
+    }
+    if (!content) {
+      alert("내용을 입력하세요");
+      contentInput.current.focus();
+      return;
+    }
+    setTodo({
+      id: uuidv4(),
+      title: "",
+      body: "",
+      isDone: false,
+    });
+    setTitle("");
+    setContent("");
+    titleInput.current.focus();
+  };
   return (
-    <form>
-      <input type="text" />
-      <input type="text" />
+    <form onSubmit={submitTodo}>
+      <label htmlFor="title">제목 : </label>
+      <input id="title" ref={titleInput} value={title} onChange={titleChange} />
+      <label htmlFor="content">내용 : </label>
+      <input
+        id="content"
+        ref={contentInput}
+        value={content}
+        onChange={contentChange}
+      />
       <button>추가</button>
     </form>
   );
-}
+};
 
 export default Input;

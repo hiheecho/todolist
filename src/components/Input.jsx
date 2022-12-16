@@ -62,7 +62,7 @@ const Input = () => {
 };
 
 const SubmitForm = styled.form`
-  width: 80%;
+  width: 90%;
   height: 100px;
   margin: auto;
   background-color: #9a9a9a;
@@ -74,8 +74,9 @@ const SubmitForm = styled.form`
 `;
 const InputComponent = styled.input`
   border: none;
+  width: 200px;
   border-radius: 5px;
-  line-height: 20px;
+  line-height: 25px;
   padding-left: 5px;
   margin-right: 15px;
 `;

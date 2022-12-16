@@ -37,27 +37,32 @@ export const getTodo = (payload) => {
 };
 
 //Initial State
-const InitialState = {
-  todos: [
-    {
-      id: uuidv4(),
-      title: "스타벅스가기",
-      content: "쿠폰쓰기",
-      isDone: false,
-    },
-  ],
-};
+const InitialState = [
+  {
+    id: uuidv4(),
+    title: "스타벅스가기",
+    content: "쿠폰쓰기",
+    isDone: false,
+  },
+];
 
 //Reducer
 const todos = (state = InitialState, action) => {
   switch (action.type) {
-    case ADD_TODO: {
-      return {
-        todos: [...state.todos, action.payload],
-      };
-    }
+    case ADD_TODO:
+      console.log(action);
+      return [
+        ...state,
+        {
+          id: action.payload.id,
+          title: action.payload.title,
+          content: action.payload.content,
+          isDone: false,
+        },
+      ];
+
     default:
-      return state; // error
+      return [...state]; // error
   }
 };
 //export default reducer

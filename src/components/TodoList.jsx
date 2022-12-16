@@ -7,7 +7,7 @@ function TodoList({ isActive }) {
 
   return (
     <div>
-      <h3>{isActive ? "Working" : "Done"}</h3>
+      <h2>{isActive ? "Working 🔥" : "Done ✅"}</h2>
       {todos
         .filter((todo) => todo.isDone === !isActive)
         .map((todo) => (

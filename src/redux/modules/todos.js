@@ -18,7 +18,7 @@ export const addTodo = (payload) => {
 export const deleteTodo = (payload) => {
   return {
     type: DELETE_TODO,
-    payload,
+    payload: payload,
   };
 };
 //TodoList 버튼 토글(완료-취소)
@@ -40,8 +40,20 @@ export const getTodo = (payload) => {
 const InitialState = [
   {
     id: uuidv4(),
-    title: "스타벅스가기",
-    content: "쿠폰쓰기",
+    title: "리액트 공부하기",
+    content: "리덕스 정리",
+    isDone: true,
+  },
+  {
+    id: uuidv4(),
+    title: "카페가기",
+    content: "아메리카노 샷추가",
+    isDone: false,
+  },
+  {
+    id: uuidv4(),
+    title: "청소하기",
+    content: "옷정리하기",
     isDone: false,
   },
 ];
@@ -50,7 +62,6 @@ const InitialState = [
 const todos = (state = InitialState, action) => {
   switch (action.type) {
     case ADD_TODO:
-      console.log(action);
       return [
         ...state,
         {
@@ -60,9 +71,13 @@ const todos = (state = InitialState, action) => {
           isDone: false,
         },
       ];
-
+    case DELETE_TODO:
+      console.log(action);
+      return [state.filter((todo) => todo.id !== todos.id)];
+    case TOGGLE_TODO:
+      return [state.map((todo) => console.log(todo))];
     default:
-      return [...state]; // error
+      return [...state];
   }
 };
 //export default reducer

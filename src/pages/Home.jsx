@@ -7,12 +7,18 @@ const Home = () => {
   return (
     <MainComponent>
       <Input />
-      <TodoList isActive={true} />
-      <TodoList isActive={false} />
+      <ListComponent>
+        <TodoList isActive={true} />
+        <TodoList isActive={false} />
+      </ListComponent>
     </MainComponent>
   );
 };
 const MainComponent = styled.div`
   width: 100%;
+`;
+const ListComponent = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 export default Home;

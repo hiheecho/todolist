@@ -4,16 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { addTodo } from "../redux/modules/todos";
 
 const Input = () => {
-  const id = uuidv4();
   const dispatch = useDispatch();
-  const [todo, setTodo] = useState([
-    {
-      id: uuidv4(),
-      title: "",
-      content: "",
-      isDone: false,
-    },
-  ]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const titleInput = useRef();
@@ -26,11 +17,9 @@ const Input = () => {
   };
   const submitTodo = (event) => {
     event.preventDefault();
-    dispatch(addTodo({ ...todo, id }));
     if (!title) {
       alert("제목을 입력하세요");
       titleInput.current.focus();
-
       return;
     }
     if (!content) {
@@ -38,12 +27,14 @@ const Input = () => {
       contentInput.current.focus();
       return;
     }
-    setTodo({
+    const newTodo = {
       id: uuidv4(),
-      title: "",
-      body: "",
+      title: title,
+      content: content,
       isDone: false,
-    });
+    };
+    dispatch(addTodo(newTodo));
+
     setTitle("");
     setContent("");
     titleInput.current.focus();

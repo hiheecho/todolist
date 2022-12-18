@@ -1,11 +1,8 @@
 import React from "react";
+import DetailBox from "../components/DetailBox";
 
 function TodoList() {
-  return (
-    <div>
-      <p>TodoList</p>
-    </div>
-  );
+  return <DetailBox />;
 }
 
 export default TodoList;

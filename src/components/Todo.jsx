@@ -1,19 +1,25 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { deleteTodo, toggleTodo } from "../redux/modules/todos";
 
 function Todo({ todo }) {
-  console.log(todo.id);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const deleteList = () => {
     return dispatch(deleteTodo(todo.id));
   };
   const toggleList = () => {
     return dispatch(toggleTodo(todo.id));
   };
+  const goDetailPage = () => {
+    navigate(`/${todo.id}`);
+  };
   return (
     <TodoComponent>
+      <p onClick={goDetailPage}>[상세보기]</p>
       <ListTitle>{todo.title}</ListTitle>
       <p>{todo.content}</p>
       <BtnContainer>

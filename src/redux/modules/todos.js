@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 const ADD_TODO = "ADD_TODO";
 const DELETE_TODO = "DELETE_TODO";
 const TOGGLE_TODO = "TOGGLE_TODO";
-const GET_TODO = "GET_TODO";
 
 //Action Creator
 //TodoList추가
@@ -25,13 +24,6 @@ export const deleteTodo = (payload) => {
 export const toggleTodo = (payload) => {
   return {
     type: TOGGLE_TODO,
-    payload,
-  };
-};
-//TodoList 상세페이지 불러오기
-export const getTodo = (payload) => {
-  return {
-    type: GET_TODO,
     payload,
   };
 };
@@ -73,11 +65,20 @@ const todos = (state = InitialState, action) => {
       ];
     case DELETE_TODO:
       console.log(action);
-      return [state.filter((todo) => todo.id !== todos.id)];
+      return state.filter((todo) => todo.id !== action.payload);
     case TOGGLE_TODO:
-      return [state.map((todo) => console.log(todo))];
+      return state.map((todo) => {
+        if (todo.id === action.payload) {
+          return {
+            ...todo,
+            isDone: !todo.isDone,
+          };
+        } else {
+          return todo;
+        }
+      });
     default:
-      return [...state];
+      return state;
   }
 };
 //export default reducer
